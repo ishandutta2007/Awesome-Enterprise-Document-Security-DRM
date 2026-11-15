@@ -1,6 +1,6 @@
 # Awesome-Enterprise-Document-Security-DRM
 
-# Top Enterprise Document Security & DRM Ecosystem
+## Top Enterprise Document Security & DRM Ecosystem
 
 **Curated List of SaaS Platforms & Open-Source GitHub Projects**  
 *Focused on Persistent File Encryption, Cross-Boundary Rights Control & Self-Hosted DRM*  
