@@ -2,9 +2,9 @@
   <defs>
     <!-- Background Gradients -->
     <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0a0e17" />
-      <stop offset="50%" stop-color="#0f172a" />
-      <stop offset="100%" stop-color="#050811" />
+      <stop offset="0%" stop-color="#0a0f1d" />
+      <stop offset="50%" stop-color="#0d1b2a" />
+      <stop offset="100%" stop-color="#111827" />
     </linearGradient>
 
     <!-- Glowing Accent Gradients -->
@@ -14,152 +14,174 @@
       <stop offset="100%" stop-color="#c084fc" />
     </linearGradient>
 
-    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.8" />
-      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.2" />
+    <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
     </linearGradient>
 
-    <!-- Glow Filters -->
+    <!-- Filters for Glow Effects -->
     <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="8" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
-    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="25" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
 
-    <!-- Grid Pattern -->
-    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.75" stroke-opacity="0.4" />
-      <circle cx="40" cy="40" r="1" fill="#38bdf8" fill-opacity="0.3" />
-    </pattern>
+    <filter id="subtleGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
   </defs>
 
   <style>
     .title-text {
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       font-weight: 800;
-      font-size: 44px;
-      letter-spacing: -0.5px;
+      font-size: 42px;
       fill: url(#primaryGrad);
     }
     .subtitle-text {
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       font-weight: 500;
       font-size: 20px;
-      fill: #e2e8f0;
-      letter-spacing: 0.2px;
+      fill: #94a3b8;
     }
-    .badge-text {
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    .badge-label {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       font-weight: 600;
       font-size: 13px;
       fill: #38bdf8;
     }
-    .tagline-text {
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      font-weight: 400;
-      font-size: 14px;
-      fill: #94a3b8;
+    .node-orbit-1 {
+      animation: orbit1 18s linear infinite;
+      transform-origin: 980px 210px;
+    }
+    .node-orbit-2 {
+      animation: orbit2 26s linear infinite;
+      transform-origin: 980px 210px;
+    }
+    .pulse-glow {
+      animation: pulseGlow 4s ease-in-out infinite alternate;
+    }
+    .floating-card-1 {
+      animation: floatSlow 6s ease-in-out infinite alternate;
+    }
+    .floating-card-2 {
+      animation: floatSlowRev 7s ease-in-out infinite alternate;
     }
 
-    /* Subtle Non-Obtrusive Animations in Background */
+    @keyframes orbit1 {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes orbit2 {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
     @keyframes pulseGlow {
-      0%, 100% { opacity: 0.25; transform: scale(1); }
-      50% { opacity: 0.45; transform: scale(1.08); }
+      0% { opacity: 0.35; transform: scale(0.96); }
+      100% { opacity: 0.75; transform: scale(1.04); }
     }
-    @keyframes scanline {
-      0% { transform: translateY(-50px); opacity: 0; }
-      50% { opacity: 0.6; }
-      100% { transform: translateY(430px); opacity: 0; }
+    @keyframes floatSlow {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-10px); }
     }
-    @keyframes floatParticle {
-      0%, 100% { transform: translateY(0px) translateX(0px); }
-      50% { transform: translateY(-12px) translateX(8px); }
-    }
-    @keyframes dashMove {
-      to { stroke-dashoffset: -40; }
-    }
-
-    .pulse-orb-1 {
-      transform-origin: 200px 100px;
-      animation: pulseGlow 8s ease-in-out infinite;
-    }
-    .pulse-orb-2 {
-      transform-origin: 1000px 320px;
-      animation: pulseGlow 10s ease-in-out infinite 2s;
-    }
-    .particle {
-      animation: floatParticle 6s ease-in-out infinite;
-    }
-    .laser-scan {
-      animation: scanline 7s linear infinite;
-    }
-    .stream-line {
-      stroke-dasharray: 8 6;
-      animation: dashMove 4s linear infinite;
+    @keyframes floatSlowRev {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(8px); }
     }
   </style>
 
-  <!-- Deep Background Layer -->
+  <!-- Deep Background -->
   <rect width="1200" height="420" rx="16" fill="url(#bgGrad)" />
-  <rect width="1200" height="420" rx="16" fill="url(#grid)" />
 
-  <!-- Background Animated Glowing Orbs (Kept behind and away from center text) -->
-  <g class="pulse-orb-1">
-    <circle cx="180" cy="90" r="120" fill="#0284c7" opacity="0.18" filter="url(#softGlow)" />
-  </g>
-  <g class="pulse-orb-2">
-    <circle cx="1020" cy="330" r="140" fill="#7c3aed" opacity="0.18" filter="url(#softGlow)" />
-  </g>
-
-  <!-- Animated Data Streams in Background (Non-intrusive) -->
-  <path d="M 50 340 C 250 340, 350 390, 550 390 C 750 390, 850 350, 1150 350" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-opacity="0.3" class="stream-line" />
-  <path d="M 50 60 C 300 60, 450 30, 700 30 C 950 30, 1050 70, 1150 70" fill="none" stroke="#818cf8" stroke-width="1.2" stroke-opacity="0.25" class="stream-line" style="animation-direction: reverse;" />
-
-  <!-- Floating Ambient Shield Particles (Background Aesthetics) -->
-  <g class="particle" opacity="0.35">
-    <polygon points="120,200 135,215 130,240 120,248 110,240 105,215" fill="none" stroke="#38bdf8" stroke-width="1.5" />
-    <polygon points="1080,140 1095,155 1090,180 1080,188 1070,180 1065,155" fill="none" stroke="#c084fc" stroke-width="1.5" />
+  <!-- Subtle Architectural Grid Pattern -->
+  <g opacity="0.08" stroke="#38bdf8" stroke-width="1">
+    <line x1="0" y1="70" x2="1200" y2="70" />
+    <line x1="0" y1="140" x2="1200" y2="140" />
+    <line x1="0" y1="210" x2="1200" y2="210" />
+    <line x1="0" y1="280" x2="1200" y2="280" />
+    <line x1="0" y1="350" x2="1200" y2="350" />
+    <line x1="100" y1="0" x2="100" y2="420" />
+    <line x1="250" y1="0" x2="250" y2="420" />
+    <line x1="400" y1="0" x2="400" y2="420" />
+    <line x1="550" y1="0" x2="550" y2="420" />
+    <line x1="700" y1="0" x2="700" y2="420" />
+    <line x1="850" y1="0" x2="850" y2="420" />
+    <line x1="1000" y1="0" x2="1000" y2="420" />
   </g>
 
-  <!-- Laser Scan Light Effect (Background) -->
-  <line x1="100" y1="0" x2="1100" y2="0" stroke="url(#primaryGrad)" stroke-width="1" class="laser-scan" opacity="0.2" />
+  <!-- Ambient Glowing Orbs (Safely placed in background) -->
+  <circle class="pulse-glow" cx="980" cy="210" r="140" fill="#6366f1" filter="url(#glow)" />
+  <circle class="pulse-glow" cx="200" cy="80" r="110" fill="#0284c7" filter="url(#glow)" />
 
-  <!-- Central Security Graphic Shield Motif (Behind Headline with high contrast) -->
-  <g transform="translate(600, 105)">
-    <!-- Central Shield Geometry -->
-    <path d="M 0 -45 L 38 -25 L 38 18 C 38 42, 0 62, 0 62 C 0 62, -38 42, -38 18 L -38 -25 Z" fill="#0f172a" stroke="url(#primaryGrad)" stroke-width="2.5" filter="url(#glow)" />
-    <!-- Lock / Keyhole Icon in Shield -->
-    <path d="M -9 5 L -9 0 C -9 -5, -5 -9, 0 -9 C 5 -9, 9 -5, 9 0 L 9 5" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" />
-    <rect x="-12" y="5" width="24" height="18" rx="3" fill="#38bdf8" />
-    <circle cx="0" cy="12" r="2.5" fill="#0f172a" />
-    <line x1="0" y1="13.5" x2="0" y2="18" stroke="#0f172a" stroke-width="1.5" stroke-linecap="round" />
+  <!-- Right Side Architectural Visual: Cryptographic Document Vault & DRM Security Core -->
+  <g>
+    <!-- Central Cryptographic Core Shield -->
+    <circle cx="980" cy="210" r="48" fill="#1e1b4b" stroke="#818cf8" stroke-width="3" filter="url(#subtleGlow)" />
+    <!-- Security Shield Geometry & Document Keyhole -->
+    <path d="M 980 186 L 1000 195 L 1000 215 C 1000 228 990 238 980 242 C 970 238 960 228 960 215 L 960 195 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2.5" />
+    <path d="M 975 208 L 975 204 C 975 201 977 199 980 199 C 983 199 985 201 985 204 L 985 208" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" />
+    <rect x="973" y="208" width="14" height="11" rx="2" fill="#38bdf8" />
+    <circle cx="980" cy="213" r="1.5" fill="#0f172a" />
+
+    <!-- Orbital Policy Rings -->
+    <circle cx="980" cy="210" r="105" fill="none" stroke="#334155" stroke-dasharray="6,8" stroke-width="1.5" />
+    <circle cx="980" cy="210" r="160" fill="none" stroke="#1e293b" stroke-dasharray="8,10" stroke-width="1.5" />
+
+    <!-- Dynamic Orbiting Security Nodes (Inner Ring) -->
+    <g class="node-orbit-1">
+      <circle cx="980" cy="105" r="14" fill="#0f172a" stroke="#38bdf8" stroke-width="2" />
+      <circle cx="980" cy="315" r="14" fill="#0f172a" stroke="#818cf8" stroke-width="2" />
+      <circle cx="875" cy="210" r="14" fill="#0f172a" stroke="#c084fc" stroke-width="2" />
+      <circle cx="1085" cy="210" r="14" fill="#0f172a" stroke="#34d399" stroke-width="2" />
+    </g>
+
+    <!-- Dynamic Orbiting Security Nodes (Outer Ring) -->
+    <g class="node-orbit-2">
+      <circle cx="980" cy="50" r="11" fill="#0f172a" stroke="#f472b6" stroke-width="1.5" />
+      <circle cx="980" cy="370" r="11" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" />
+      <circle cx="820" cy="210" r="11" fill="#0f172a" stroke="#fbbf24" stroke-width="1.5" />
+      <circle cx="1140" cy="210" r="11" fill="#0f172a" stroke="#a78bfa" stroke-width="1.5" />
+    </g>
   </g>
 
-  <!-- FOREGROUND CONTENT: Header Category Badge -->
-  <g transform="translate(600, 190)">
-    <rect x="-185" y="-16" width="370" height="32" rx="16" fill="#1e293b" fill-opacity="0.8" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.5" />
-    <circle cx="-165" cy="0" r="4" fill="#38bdf8" />
-    <text x="5" y="5" text-anchor="middle" class="badge-text">ENTERPRISE IRM &#8226; PERSISTENT EDRM &#8226; FILE SECURITY</text>
+  <!-- Left Side: Typography & Highlights (Sharp Foreground) -->
+  <g transform="translate(60, 0)">
+    <!-- Top Category Pill -->
+    <g class="floating-card-1" transform="translate(0, 62)">
+      <rect width="395" height="34" rx="17" fill="url(#badgeGrad)" stroke="#38bdf8" stroke-width="1.5" />
+      <circle cx="18" cy="17" r="5" fill="#38bdf8" />
+      <text x="32" y="22" class="badge-label">ENTERPRISE IRM &#8226; PERSISTENT EDRM &#8226; ZERO TRUST</text>
+    </g>
+
+    <!-- Main Title Lines -->
+    <text x="0" y="148" class="title-text">Awesome Enterprise</text>
+    <text x="0" y="202" class="title-text">Document Security &amp; DRM</text>
+
+    <!-- Subtitle Line -->
+    <text x="0" y="248" class="subtitle-text">Curated SaaS Platforms, Self-Hosted Vaults &amp; Cryptographic IRM</text>
+
+    <!-- Lower Feature Cards / Pills -->
+    <g class="floating-card-2" transform="translate(0, 285)">
+      <!-- Pill 1 -->
+      <g transform="translate(0, 0)">
+        <rect width="185" height="36" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.2" />
+        <text x="14" y="23" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#e2e8f0">&#128274; Persistent DRM/IRM</text>
+      </g>
+      <!-- Pill 2 -->
+      <g transform="translate(200, 0)">
+        <rect width="180" height="36" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.2" />
+        <text x="14" y="23" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#e2e8f0">&#128260; Dynamic Revocation</text>
+      </g>
+      <!-- Pill 3 -->
+      <g transform="translate(395, 0)">
+        <rect width="190" height="36" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.2" />
+        <text x="14" y="23" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#e2e8f0">&#128451;&#65039; Self-Hosted Vaults</text>
+      </g>
+    </g>
+
+    <!-- Bottom Features & Metrics Line -->
+    <text x="0" y="365" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="#64748b">
+      &#10003; Real-World Pricing Models &#160;|&#160; &#10003; Verified Free Trials &#160;|&#160; &#10003; Hardware Key &amp; Envelope Encryption
+    </text>
   </g>
-
-  <!-- FOREGROUND CONTENT: Main Title (Sharp & Foregrounded) -->
-  <text x="600" y="250" text-anchor="middle" class="title-text" filter="url(#glow)">Awesome Enterprise Document Security &amp; DRM</text>
-
-  <!-- FOREGROUND CONTENT: Subtitle -->
-  <text x="600" y="295" text-anchor="middle" class="subtitle-text">Curated SaaS Platforms, Self-Hosted Vaults &amp; Cryptographic IRM Systems</text>
-
-  <!-- FOREGROUND CONTENT: Tagline / Feature Highlights -->
-  <text x="600" y="332" text-anchor="middle" class="tagline-text">Persistent Rights Control &#8226; Post-Delivery Revocation &#8226; Hardware Key Sealing &#8226; Dynamic Watermarking</text>
-
-  <!-- Bottom Border Highlight -->
-  <line x1="150" y1="418" x2="1050" y2="418" stroke="url(#primaryGrad)" stroke-width="2" stroke-opacity="0.7" stroke-linecap="round" />
 </svg>
