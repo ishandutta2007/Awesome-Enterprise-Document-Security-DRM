@@ -62,7 +62,7 @@ The sector is **moderately fragmented**: mega-cap enterprise productivity giants
 
 Below are the leading open-source repositories for document security, encrypted data distribution, rights management, and cryptographic vaults, sorted in descending order by GitHub stargazers:
 
-| Project | GitHub Stars | Description | Category / Primary Focus |
+| Project | GitHub_Stars | Description | Category / Primary Focus |
 |---------|--------------|-------------|--------------------------|
 | **[OpenPGP.js](https://github.com/openpgpjs/openpgpjs)** | [![Stars](https://img.shields.io/github/stars/openpgpjs/openpgpjs?style=social&color=white)](https://github.com/openpgpjs/openpgpjs/stargazers) | 🔑 The world's most widely deployed open-source OpenPGP implementation in JavaScript/TypeScript. Powers end-to-end encrypted document exchange, digital document signing, and browser-based client-side file decryption engines (including Proton Mail and Webmail extensions). | Cryptographic Document Protocol & In-Browser Decryption |
 | **[SecureDrop](https://github.com/freedomofpress/securedrop)** | [![Stars](https://img.shields.io/github/stars/freedomofpress/securedrop?style=social&color=white)](https://github.com/freedomofpress/securedrop/stargazers) | 🕵️ Open-source whistleblower and confidential document submission system managed by Freedom of the Press Foundation. Employs Tor onion services and multi-layer PGP air-gapped encryption for secure document acquisition and redaction workflows. | Air-Gapped Confidential Document Acquisition |
